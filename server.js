@@ -71,11 +71,11 @@ app.use( ( err, req, res, next ) => {
 // Connecting and starting the server only if we run this file directly 
 if( require.main === module ) {
     const PORT = process.env.PORT;
-    mongoose.connect( mongoUrl, { newUserUrlParser: true, useUnifiedTopology: true })
+    mongoose.connect( mongoUrl )
         .then( () => {
             logger.info( "Successfully connected to the Mongo Database" );
             app.listen( PORT, () => {
-                logger.info( `Server is listening on Port ${PORT}`);
+                logger.info( `Server is listening on Port ${PORT}` );
             });
         })
         .catch( err => {
