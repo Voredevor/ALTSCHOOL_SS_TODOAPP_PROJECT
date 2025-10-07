@@ -1,1 +1,11 @@
-<% layout('layout') -%>
+<h2>New Task</h2>
+<form action="/tasks" method="POST">
+  <label>Title:</label>
+  <input type="text" name="title" required>
+
+  <label>Description:</label>
+  <textarea name="description" rows="3"></textarea>
+
+  <button type="submit">Create Task</button>
+</form>
+<a href="/tasks">Back to Tasks</a>

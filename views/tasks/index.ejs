@@ -1,1 +1,21 @@
-<% layout('layout') -%>
+<h2>Your Tasks</h2>
+<a href="/tasks/new" class="btn">Add New Task</a>
+
+<ul>
+  <% if (tasks && tasks.length > 0) { %>
+    <% tasks.forEach(task => { %>
+      <li>
+        <strong><%= task.title %></strong> - 
+        <%= task.completed ? "✅ Completed" : "⏳ Pending" %>
+        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+        <form action="/tasks/<%= task._id %>/toggle" method="POST" style="display:inline;">
+          <button type="submit">Toggle</button>
+        </form>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>No tasks yet. Add one!</li>
+  <% } %>
+</ul>
