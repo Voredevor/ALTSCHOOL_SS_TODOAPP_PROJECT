@@ -15,6 +15,8 @@ const taskRoutes = require("./routes/tasks");
 
 const app = express();
 
+app.use( morgan( "combined", {stream: logger.stream}));
+
 // Basic Middleware function 
 app.use( helmet() );
 app.use(express.urlencoded({ extended: true }));
@@ -71,7 +73,7 @@ app.use( ( err, req, res, next ) => {
 // Connecting and starting the server only if we run this file directly 
 if( require.main === module ) {
     const PORT = process.env.PORT;
-    mongoose.connect( mongoUrl )
+    mongoose.connect( mongoUrl, { tls: true } )
         .then( () => {
             logger.info( "Successfully connected to the Mongo Database" );
             app.listen( PORT, () => {
