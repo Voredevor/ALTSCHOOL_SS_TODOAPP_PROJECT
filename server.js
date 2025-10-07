@@ -47,10 +47,15 @@ app.use( session({
 
 // Attaching users to res.local for views 
 app.use(( req, res, next) => {
-    res.locals = res.locals
-    res.locals.currentUser = req.session ? req.session.user || null;
+    res.locals.currentUser = req.session ? req.session.user : null;
     next();
 });
+
+// app.use((req, res, next) => {
+//   res.locals.currentUser = req.session ? req.session.user : null;
+//   next();
+// });
+
 
 //  Routes 
 app.use( "/", authRoutes ); // We login and register + root here
