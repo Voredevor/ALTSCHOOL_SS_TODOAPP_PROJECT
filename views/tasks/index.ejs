@@ -6,7 +6,7 @@
     <% tasks.forEach(task => { %>
       <li>
         <strong><%= task.title %></strong> - 
-        <%= task.completed ? "✅ Completed" : "⏳ Pending" %>
+        <%= task.completed ? "Completed" : "Pending" %>
         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
           <button type="submit">Delete</button>
         </form>
@@ -15,7 +15,7 @@
         </form>
       </li>
     <% }) %>
-  <% } else { %>
+  <% } else { %> 
     <li>No tasks yet. Add one!</li>
   <% } %>
 </ul>
